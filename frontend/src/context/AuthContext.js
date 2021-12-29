@@ -39,7 +39,10 @@ const AuthContextProvider = ({children}) => {
     const context_data = {
         user:user,
         token:authtoken,
-        login:login
+        login:login,
+        setuser:setuser,
+        setauthtoken:setauthtoken
+        
     }
 
     

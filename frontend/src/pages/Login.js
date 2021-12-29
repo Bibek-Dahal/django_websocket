@@ -19,8 +19,9 @@ const Login = () => {
     return (
         <div>
             {user!=null &&<Navigate to = "/"/>}
+            <h1>Login</h1>
             <form onSubmit={login} method="post">
-                Name: <input type="text" name="name" value={val.name}  onChange={handleChange}/>
+                Name: <input type="text" name="name" value={val.name}  onChange={handleChange}/><br/><br/>
                 Password: <input type="password" name="password" value={val.password} onChange={handleChange}/>
                 <button type="submit">Login</button>
                 

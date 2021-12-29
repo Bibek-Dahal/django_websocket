@@ -2,7 +2,7 @@ import React from 'react'
 import {useState,useEffect} from 'react'
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
-
+import Logout from './pages/Logout'
 import Post from './pages/Post';
 import {
   BrowserRouter as Router,
@@ -26,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<AuthHoc><Homepage/></AuthHoc>}></Route>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/logout" element={<Logout/>}/>
             <Route path="/signup" element={<Registration/>}/>
             <Route path="/about" element={<AuthHoc><About/></AuthHoc>}></Route>
             <Route path="/post" element={<AuthHoc><Post/></AuthHoc>}></Route>

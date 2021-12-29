@@ -1,8 +1,8 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
-import About from './pages/About';
+
 import Post from './pages/Post';
 import {
   BrowserRouter as Router,
@@ -15,14 +15,9 @@ import Nav from './components/Nav';
 import AuthHoc from './hoc/AuthHoc';
 import AuthContextProvider from './context/AuthContext'
 import Registration from './pages/Registration';
-
+import About from './pages/About.js'
 
 function App() {
-  const [isClicked, setisClicked] = useState(false)
-  const handleClick = (e)=>{
-    e.preventDefault()
-    setisClicked(true)
-  }
   return (
     <div>
       <Router>
@@ -37,15 +32,8 @@ function App() {
           </Routes>
         </AuthContextProvider> 
       </Router>
-      <form>
-      <button onClick={handleClick}>click me</button>
-      </form>
-      {
-        isClicked==true && <About/>
-
-        
-      }
-        <About/>
+      
+      
     </div>
     
   );

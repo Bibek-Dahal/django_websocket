@@ -16,18 +16,13 @@ const AuthContextProvider = ({children}) => {
     const login = async (e)=>{
         e.preventDefault()
         console.log(e.target.name.value)
+        
+        const options = {
+            headers: {'Content-Type': 'application/json'}
+        }
+        const data =JSON.stringify({username:e.target.name.value,password:e.target.password.value})
         try{
-            const options = {
-                headers: {'Content-Type': 'application/json'}
-            }
-            const data =JSON.stringify({username:e.target.name.value,password:e.target.password.value})
-            try{
-                const res = await axios.post(`${baseURL}/token/`,data,options)
-            }catch(error){
-                console.log(error.response.data)
-            }
             const res = await axios.post(`${baseURL}/token/`,data,options)
-            //console.log(jwt_decode(res.data.access))
             if(res.status === 200){
                 setuser(jwt_decode(res.data.access))
                 setauthtoken(res.data)
@@ -36,16 +31,10 @@ const AuthContextProvider = ({children}) => {
                 navigate('/')
             }
         }catch(error){
-            console.log("error occoured",error)
-            
-        }
-        
-        
+            console.log(error.response.data)
+        }   
     }
-    // if (!token_status){
-    //     navigate('/login')
-
-    // }
+    
     
     const context_data = {
         user:user,

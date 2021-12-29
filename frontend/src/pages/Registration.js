@@ -1,10 +1,12 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState,useContext} from 'react'
 import axios from 'axios'
 import {baseURL} from '../utils/axiosInstance.js'
-import { useNavigate } from "react-router-dom";
+import { Navigate,useNavigate} from "react-router-dom";
+import { MyContext} from '../context/AuthContext'
 
 const Registration = () => {
+    const {user,login} = useContext(MyContext)
     const [inputs, setinputs] = useState({first_name:"",last_name:""})
     const navigate = useNavigate()
     const handleChange = (e)=>{
@@ -35,7 +37,7 @@ const Registration = () => {
 
     return (
         <div>
-            
+            {user!=null &&<Navigate to = "/"/>}
             <form onSubmit={handleSubmit} method="post">
                 Username: <input type="text" name="username" value={inputs.username}  onChange={handleChange}/>
                 Email: <input type="text" name="email" value={inputs.email} onChange={handleChange}/>

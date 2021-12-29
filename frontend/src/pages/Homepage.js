@@ -3,13 +3,19 @@ import { MyContext } from '../context/AuthContext'
 import axiosinstance from '../utils/axiosInstance'
 import {useNavigate} from 'react-router-dom'
 import dayjs from 'dayjs'
+import About from './About.js'
 
 const Homepage = () => {
+    const [isClicked, setisClicked] = useState(false)
     const [blog, setblog] = useState(null)
     const [msg,setmsg] = useState(null)
     const [ws,setws] = useState(null)
     const {token,user} = useContext(MyContext)
     const navigate = useNavigate()
+    const handleClick = (e)=>{
+        e.preventDefault()
+        setisClicked(true)
+      }
     
 
     const blogs = async ()=>{
@@ -39,6 +45,7 @@ const Homepage = () => {
     }
 
     useEffect(()=>{
+        console.log("home comp mount")
         blogs()
         const ws = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${user.user}/`)
         setws(ws)
@@ -59,7 +66,7 @@ const Homepage = () => {
             
             return () => {
                 ws.close()
-                console.log('comp unmount')
+                console.log('home comp unmount')
             }    
     },[])
  
@@ -67,6 +74,12 @@ const Homepage = () => {
     return (
         <div>
             <h1>Home Page</h1>
+        {
+            isClicked==true && <About/> 
+        }
+        <form>
+            <button onClick={handleClick}>click me</button>
+        </form>
             {<h1>{msg}</h1>}
             {user.user}
             

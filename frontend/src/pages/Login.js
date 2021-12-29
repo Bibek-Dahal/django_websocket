@@ -1,10 +1,11 @@
 
-import {useState,useContext} from 'react'
+import {useState,useEffect,useContext} from 'react'
 import { MyContext} from '../context/AuthContext'
+import {Navigate} from 'react-router-dom'
 
 const Login = () => {
-    const {login} = useContext(MyContext)
-    
+    const {user,login} = useContext(MyContext)
+   
     const [val, setval] = useState( {
         name:"",
         password:""
@@ -13,13 +14,19 @@ const Login = () => {
         setval({...val,[e.target.name]:e.target.value})
         // console.log(e.target.value)
     }
+   
+    
     return (
         <div>
+            {user!=null &&<Navigate to = "/"/>}
             <form onSubmit={login} method="post">
                 Name: <input type="text" name="name" value={val.name}  onChange={handleChange}/>
                 Password: <input type="password" name="password" value={val.password} onChange={handleChange}/>
                 <button type="submit">Login</button>
+                
             </form>
+            {user?.user}
+            
         </div>
     )
 }
